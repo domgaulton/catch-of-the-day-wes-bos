@@ -41,3 +41,9 @@ function Welcome(props) {
 * Convert component to es6 arrow function and add props to method `const Header = (props) => {`
 * remove render `render() {`
 * remove `this` from this.props `{this.props.tagline}`
+
+### Lesson 9
+* Routing using react router (industry standard)
+* Show / Hide components in application using BrowserRouter then Match and Miss https://reacttraining.com/react-router/web/api/BrowserRouter
+
+
