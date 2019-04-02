@@ -5,9 +5,12 @@ import { render } from 'react-dom';
 // import css
 import './css/style.css';
 
-// import component StorePicker
-import StorePicker from './components/StorePicker';
+// import App
+import App from './components/App'
+
+// // import component StorePicker
+// import StorePicker from './components/StorePicker';
 
 
 // Instead of using ReactDom.render()
-render(<StorePicker/>, document.querySelector('#main'))
+render(<App/>, document.querySelector('#main'))
