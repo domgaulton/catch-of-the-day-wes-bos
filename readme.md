@@ -12,3 +12,7 @@
 * Split methods and functions into components
 * export default StorePicker;
 * import StorePicker into index.js
+
+### Lesson 4
+* JSX introduction - you could use `react.CreateElement(p, {className='class-name'}, 'Lorem Ipsum')` but instead we can use JSX by using the render and return methods render() { return (...)}
+* `{ /* Comments in JSX */ }`
