@@ -29,4 +29,15 @@
 * If you want to pass information to a component you give it a prop (property)
 * Pass it as an attribute and call it via this
 * See console.log(this); inside render method
-* TIP: Debug in console. Select object in React Developer Tab and then in console use `$r` e.g. `$r.props.name`
+* TIP: Debug in console. Select object in React Developer Tab and then in console use `$r` e.g. `$r.props.name` (Also works for `$0` from HTML DOM Element / Tab and console!s)
+
+### Lesson 8
+* If you only need render (which includes props), you don't need a full component. Instead use a stateless function - https://reactjs.org/docs/components-and-props.html
+```jsx
+function Welcome(props) {
+  return <h1>Hello, {props.name}</h1>;
+}
+```
+* Convert component to es6 arrow function and add props to method `const Header = (props) => {`
+* remove render `render() {`
+* remove `this` from this.props `{this.props.tagline}`
