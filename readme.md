@@ -54,3 +54,8 @@ function Welcome(props) {
 * Use inline javascript events, no seperation of concerns
 * Use function refs as React developers don't want to mess around with the DOM where possible.
 * Pay attention to arrow functions in React so that we can use `this` for the class Object rather than the method!
+
+### Lesson 12
+* Need access to router
+* Context (like state to hold data or props to pass data from one component to child) allows you to declare at top level and be made avaliable to lower level components
+* TODO: React 16 as context isn't working 
