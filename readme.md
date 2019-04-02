@@ -50,3 +50,7 @@ function Welcome(props) {
 * Named exports - using helpers.js
 * Nice for testing rather than using random keyboard strings `hasdadlanflsad`
 
+### Lesson 11
+* Use inline javascript events, no seperation of concerns
+* Use function refs as React developers don't want to mess around with the DOM where possible.
+* Pay attention to arrow functions in React so that we can use `this` for the class Object rather than the method!
