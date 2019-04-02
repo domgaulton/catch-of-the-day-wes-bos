@@ -24,3 +24,9 @@
 * Setting up an App and importing modules into App.js
 * Will learn about routing later
 * Ignored StorePicker.js from index.js for es lint happiness!
+
+### Lesson 7
+* If you want to pass information to a component you give it a prop (property)
+* Pass it as an attribute and call it via this
+* See console.log(this); inside render method
+* TIP: Debug in console. Select object in React Developer Tab and then in console use `$r` e.g. `$r.props.name`
