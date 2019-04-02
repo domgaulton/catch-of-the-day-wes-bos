@@ -16,3 +16,7 @@
 ### Lesson 4
 * JSX introduction - you could use `react.CreateElement(p, {className='class-name'}, 'Lorem Ipsum')` but instead we can use JSX by using the render and return methods render() { return (...)}
 * `{ /* Comments in JSX */ }`
+
+
+### Lesson 5
+* Adding css styles via index.js. Better than doing it via public html as you can split your component styles
