@@ -46,4 +46,7 @@ function Welcome(props) {
 * Routing using react router (industry standard)
 * Show / Hide components in application using BrowserRouter then Match and Miss https://reacttraining.com/react-router/web/api/BrowserRouter
 
+### Lesson 10
+* Named exports - using helpers.js
+* Nice for testing rather than using random keyboard strings `hasdadlanflsad`
 
