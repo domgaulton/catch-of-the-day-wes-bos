@@ -6,6 +6,8 @@ import Inventory from './Inventory';
 
 import sampleFishes from '../sample-fishes.js'
 
+import FishList from './FishList';
+
 class App extends React.Component {
   constructor() {
     super();
@@ -35,6 +37,17 @@ class App extends React.Component {
       <div className='catch-of-the-day'>
         <div className='menu'>
           <Header tagline='Fresh Fish Daily!'/>
+          <ul className='list-of-fishes'>
+            {
+              Object
+                .keys(this.state.fishes)
+                .map(key => 
+                  <FishList 
+                    key={key}
+                    details={this.state.fishes[key]}
+                  />)
+            }
+          </ul>
         </div>
         <Order />
         <Inventory addFish={this.addFish} loadSampleFishes={this.loadSampleFishes}/>

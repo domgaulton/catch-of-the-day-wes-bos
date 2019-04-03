@@ -100,3 +100,8 @@ function Welcome(props) {
 ### Lesson 14
 * Load sample fish with method on App.js and passed with props to inventory
 
+### Lesson 15
+* Display state as data
+* Set up a new component and loop over the data using `Object.keys()` which returns each item in object as an array like variable to work with
+* Pass each mapped object `key` and `details` which can be grabbed from the state
+* Call these in the FishList component `{this.props.details.name}` and destructure if you have lots of `this.props.detail` items
