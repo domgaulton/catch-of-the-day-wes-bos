@@ -5,13 +5,15 @@ import React from 'react';
 import { getFunName } from '../helpers';
 
 class StorePicker extends React.Component {
+  myInput = React.createRef();
+
   goToStore = (event) => {
     event.preventDefault();
     // Grab text value from box
-    const storeId = this.storeInput.value;
-    console.log(storeId);
+    const storeName = this.myInput.current.value;
+    console.log(storeName);
     // Transition to URL /store/:storeID
-    this.context.router.transitionTo(`/store/${storeId}`);
+    this.props.history.push(`/store/${storeName}`);
   }
 	render() {
 		return (
@@ -24,17 +26,12 @@ class StorePicker extends React.Component {
           placeholder='Store Name' 
           defaultValue={getFunName()}
           // Can access storeInput like a prop where prop is whole HTML element and can then get the value
-          ref={ (input) => { this.storeInput = input } }
+          ref={this.myInput}
         />
         <button type='submit'>Enter Store</button>
       </form>
     )
 	}
-}
-
-// Set context types for StorePicker from router
-StorePicker.contextTypes = {
-  router: React.PropTypes.object
 }
 
 export default StorePicker;

@@ -58,4 +58,10 @@ function Welcome(props) {
 ### Lesson 12
 * Need access to router
 * Context (like state to hold data or props to pass data from one component to child) allows you to declare at top level and be made avaliable to lower level components
-* TODO: React 16 as context isn't working 
+* TODO: React 16 as context isn't working
+
+### Branched to React 16 package
+* Take package.json from here - https://github.com/wesbos/React-For-Beginners-Starter-Files/blob/master/catch-of-the-day/package.json
+* Remove node_modules
+* Run npm install
+ 
