@@ -10,7 +10,7 @@ const Router = () => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exactly pattern='/' component={StorePicker} />
+        <Route exact pattern='/' component={StorePicker} />
         <Route pattern='/store/:storeId' component={App} />
         <Route component={notFound} />
       </Switch>
