@@ -83,7 +83,7 @@ function Welcome(props) {
   }
 
   // ES6 arrow functions are VERY important
-  
+
   addFish = fish => {
     // 1. Take a copy of the existing state array (... = spread array)
     const fishes = { ...this.state.fishes };
@@ -96,3 +96,7 @@ function Welcome(props) {
 * See notes on addFish method in App.js
 * Pass function created in App.js down via props to Inventory then to AddFishForm (but now as a prop)
 * Now the addFish() method is avaliable in the addFishForm, we can call it `this.props.addFish(fish);`
+
+### Lesson 14
+* Load sample fish with method on App.js and passed with props to inventory
+
