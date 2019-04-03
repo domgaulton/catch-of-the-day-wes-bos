@@ -1,13 +1,11 @@
 // import react from react node modules
 import React from 'react';
-
-// named export
 import { getFunName } from '../helpers';
 
 class StorePicker extends React.Component {
   myInput = React.createRef();
 
-  goToStore = (event) => {
+  goToStore = event => {
     event.preventDefault();
     // Grab text value from box
     const storeName = this.myInput.current.value;
@@ -15,6 +13,7 @@ class StorePicker extends React.Component {
     // Transition to URL /store/:storeID
     this.props.history.push(`/store/${storeName}`);
   }
+
 	render() {
 		return (
       <form className='store-selector' onSubmit={this.goToStore}>

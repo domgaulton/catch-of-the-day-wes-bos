@@ -64,4 +64,6 @@ function Welcome(props) {
 * Take package.json from here - https://github.com/wesbos/React-For-Beginners-Starter-Files/blob/master/catch-of-the-day/package.json
 * Remove node_modules
 * Run npm install
- 
+* Moved Router to component and imported to index.js
+* Updated to Switch and Route and changed props from pattern to path
+* Store picker uses `this.props.history.push` now
