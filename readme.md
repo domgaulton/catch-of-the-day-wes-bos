@@ -60,10 +60,39 @@ function Welcome(props) {
 * Context (like state to hold data or props to pass data from one component to child) allows you to declare at top level and be made avaliable to lower level components
 * TODO: React 16 as context isn't working
 
-### Branched to React 16 package
+#### Branched to React 16 package
 * Take package.json from here - https://github.com/wesbos/React-For-Beginners-Starter-Files/blob/master/catch-of-the-day/package.json
 * Remove node_modules
 * Run npm install
 * Moved Router to component and imported to index.js
 * Updated to Switch and Route and changed props from pattern to path
 * Store picker uses `this.props.history.push` now
+
+### Lesson 13
+* State Lesson! Representation of all of the data within the application
+* You edit the data and react will edit the html for you
+* Again take current value rather than reading DOM - AddFishForm.js  React.createRef() as part of Lesson 12 learning - https://reactjs.org/docs/refs-and-the-dom.html
+* As state is needed for inventory, menu and order put the state in the parent App.js file. Add state to app.js for fishes and the order
+```jsx
+  constructor(){
+    super();
+    this.state = {
+      fishes: {},
+      order: {}
+    };
+  }
+
+  // ES6 arrow functions are VERY important
+  
+  addFish = fish => {
+    // 1. Take a copy of the existing state array (... = spread array)
+    const fishes = { ...this.state.fishes };
+    // 2. Add our new fish which is passed to method to that fishes array
+    fishes[`fish-${Date.now()}`] = fish;
+    // 3. Set the new fishes object to the existing state ({ fishes: fishes })
+    this.setState({ fishes });
+  }
+```
+* See notes on addFish method in App.js
+* Pass function created in App.js down via props to Inventory then to AddFishForm (but now as a prop)
+* Now the addFish() method is avaliable in the addFishForm, we can call it `this.props.addFish(fish);`

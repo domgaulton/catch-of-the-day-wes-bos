@@ -5,7 +5,7 @@ import { getFunName } from '../helpers';
 class StorePicker extends React.Component {
   myInput = React.createRef();
 
-  goToStore = event => {
+  goToStore = (event) => {
     event.preventDefault();
     // Grab text value from box
     const storeName = this.myInput.current.value;
