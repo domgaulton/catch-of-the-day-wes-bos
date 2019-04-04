@@ -147,3 +147,29 @@ const total = orderIds.reduce((prevTotal, key) => {         // reduce to get tot
   </li>
 </ul>
 ```
+
+### Lesson 18
+* Introduction to Firebase - https://firebase.google.com/ and componentWillMount lifestyle hook
+* Using webhooks we're going to manage the fishes state via firebase database
+* Create base.js file and import settings to app.js. We can get Firebase to sync only with the store state using `this.props.match.storeId` as it is created in the router and passed to App as props (see react dev tab)
+* Side Note: Backup of Cloud Firestore below
+```
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write;
+    }
+  }
+}
+```
+* We want to change to Realtime Database and update read and write to true
+```json
+{
+  /* Visit https://firebase.google.com/docs/database/security to learn more about security rules. */
+  "rules": {
+    ".read": true,
+    ".write": true
+  }
+}
+```
+
