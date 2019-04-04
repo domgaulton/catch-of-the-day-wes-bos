@@ -173,3 +173,10 @@ service cloud.firestore {
 }
 ```
 
+### Lesson 19
+* `componentWillUpdate()` Life cycle method used when the data (props or state) changes. Pass nextProps and nextState to method which gives you updated data after event
+* Using local storage to save order items you've added to browser storage (for users who are coming back)
+* Have to pass order params to order component in order to access storeId and save this as key
+* Using `JSON.stringify` and `JSON.parse` to add these to local storage as they can only accept stirng
+
+
