@@ -122,3 +122,28 @@ const buttonText = isAvaliable ? 'Add To Order' : 'Sold Out';
 * `onClick={() => this.props.addToOrder(key)}`
 * But we can't access key inside the component as this is just for React so we need to update the App and pass another prop e.g. index with same value as key and use this
 * `onClick={() => this.props.addToOrder(this.props.index)}`
+
+### Lesson 17
+* Building the order list. Order component needs both fishes and order state passed down
+* Using `const orderIds = Object.keys(this.props.order);` takes the key (identifier) and sets it as new const orderIds
+```js
+const total = orderIds.reduce((prevTotal, key) => {         // reduce to get total price
+  const fish = this.props.fishes[key];                      // take the 1st, 2nd etc fish from fishes state (passed as a prop)
+  const count = this.props.order[key];                      // take how many times the fish is passed to the order state
+  const isAvailable = fish && fish.status === 'available';  // live app so make sure it is still available as it might have gone even after adding to order
+  if (isAvailable) {
+    return prevTotal + (count * fish.price || 0)
+  }
+  return prevTotal;
+}, 0);                                                      // start with 0
+````
+* To build out the order list we are using a method called renderOrder() which allows us to do lots with the order list (animations and dyanmic updating etc)
+```jsx
+<ul className='order'>
+  {orderIds.map(this.renderOrder)}
+  <li className='total'>
+    <strong>Total</strong>
+    {formatPrice(total)}
+  </li>
+</ul>
+```
