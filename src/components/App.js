@@ -32,6 +32,15 @@ class App extends React.Component {
     })
   }
 
+  addToOrder = key => {
+    // 1. Take a copy of the existing state array (... = spread array)
+    const order = { ...this.state.order };
+    // 2. Add our new item to the order, firstly look to see if item is in order and add one or just add it brand new
+    order[key] = order[key] + 1 || 1;
+    // 3. Set the new fishes object to the existing state ({ order: order })
+    this.setState({ order });
+  }
+
 	render() {
 		return (
       <div className='catch-of-the-day'>
@@ -44,13 +53,18 @@ class App extends React.Component {
                 .map(key => 
                   <FishList 
                     key={key}
+                    index={key}
                     details={this.state.fishes[key]}
+                    addToOrder={this.addToOrder}
                   />)
             }
           </ul>
         </div>
         <Order />
-        <Inventory addFish={this.addFish} loadSampleFishes={this.loadSampleFishes}/>
+        <Inventory 
+          addFish={this.addFish} 
+          loadSampleFishes={this.loadSampleFishes}
+        />
       </div>
     )
 	}

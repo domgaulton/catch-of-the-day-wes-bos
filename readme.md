@@ -105,3 +105,20 @@ function Welcome(props) {
 * Set up a new component and loop over the data using `Object.keys()` which returns each item in object as an array like variable to work with
 * Pass each mapped object `key` and `details` which can be grabbed from the state
 * Call these in the FishList component `{this.props.details.name}` and destructure if you have lots of `this.props.detail` items
+
+### Lesson 16
+* Add to order button based on state of fishes description
+```js
+// isAvaliable is true or false based on remainder of statement
+// Written like maths equation const isAvaliable = (this.props.description.status === 'available');
+const isAvaliable = this.props.description.status === 'available';
+// Then set button text in terinary operator and attribute with const
+const buttonText = isAvaliable ? 'Add To Order' : 'Sold Out';
+// <button disabled={!isAvaliable}>{buttonText}</button>
+````
+* To pass variable to inline button method we can't just add it else it will run on page load. 
+* `onClick={this.props.addToOrder(key)}`
+* Must do es6 arrow function inline so it doesn't run on page load
+* `onClick={() => this.props.addToOrder(key)}`
+* But we can't access key inside the component as this is just for React so we need to update the App and pass another prop e.g. index with same value as key and use this
+* `onClick={() => this.props.addToOrder(this.props.index)}`
