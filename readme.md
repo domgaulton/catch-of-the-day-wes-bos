@@ -179,4 +179,8 @@ service cloud.firestore {
 * Have to pass order params to order component in order to access storeId and save this as key
 * Using `JSON.stringify` and `JSON.parse` to add these to local storage as they can only accept stirng
 
+### Lesson 20
+* Manage Inventory list - firstly pass fishes to the inventory component
+* Using `[e.target.name]: e.target.value` computed method we can select what key has been updated and change it base don updated value. Good for changing dynamic values
+* Set a new method in the app.js and pass it to props then call this method
 

@@ -39,7 +39,7 @@ class App extends React.Component {
   }
 
   componentWillUpdate(nextProps, nextState) {
-    console.log({nextProps, nextState});
+    // console.log({nextProps, nextState});
     localStorage.setItem(`order-${this.props.match.params.storeId}`, JSON.stringify(nextState.order));
   }
 
@@ -50,6 +50,15 @@ class App extends React.Component {
     fishes[`fish-${Date.now()}`] = fish;
     // 3. Set the new fishes object to the existing state ({ fishes: fishes })
     this.setState({ fishes });
+  }
+
+  updateFishInventory = (key, updatedFish) => {
+    // take a copy
+    const fishes = {...this.state.fishes};
+    // find item being updated and change it using parameters from method
+    fishes[key] = updatedFish;
+    // set state of whole fishes object
+    this.setState({ fishes })
   }
 
   loadSampleFishes = () => {
@@ -94,6 +103,8 @@ class App extends React.Component {
         <Inventory 
           addFish={this.addFish} 
           loadSampleFishes={this.loadSampleFishes}
+          fishes={this.state.fishes}
+          updateFishInventory={this.updateFishInventory}
         />
       </div>
     )
