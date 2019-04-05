@@ -172,6 +172,11 @@ service cloud.firestore {
   }
 }
 ```
+* Update to stop console errors
+```js
+import firebase from 'firebase/app';
+import 'firebase/database';
+````
 
 ### Lesson 19
 * `componentWillUpdate()` Life cycle method used when the data (props or state) changes. Pass nextProps and nextState to method which gives you updated data after event
@@ -184,3 +189,7 @@ service cloud.firestore {
 * Using `[e.target.name]: e.target.value` computed method we can select what key has been updated and change it base don updated value. Good for changing dynamic values
 * Set a new method in the app.js and pass it to props then call this method
 
+### Lesson 21
+* CRUD - Create Read Update Delete (first 3 are done already)
+* Delete - removeFish method and pass it to inventory via props (note firebase method of setting fish to null in app.js)
+* Can use `delete` for order state as it isn't using firebase. NB - What is delete??!

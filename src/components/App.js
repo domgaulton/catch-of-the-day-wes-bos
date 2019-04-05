@@ -61,6 +61,15 @@ class App extends React.Component {
     this.setState({ fishes })
   }
 
+  removeFish = key => {
+    // take a copy
+    const fishes = {...this.state.fishes};
+    // with firebase we need to set the fish in question to null
+    fishes[key] = null;
+    // set state of whole fishes object
+    this.setState({ fishes })
+  }
+
   loadSampleFishes = () => {
     this.setState({
       fishes: sampleFishes
@@ -73,6 +82,12 @@ class App extends React.Component {
     // 2. Add our new item to the order, firstly look to see if item is in order and add one or just add it brand new
     order[key] = order[key] + 1 || 1;
     // 3. Set the new fishes object to the existing state ({ order: order })
+    this.setState({ order });
+  }
+
+  removeFromOrder = key => {
+    const order = { ...this.state.order };
+    delete order[key];
     this.setState({ order });
   }
 
@@ -99,12 +114,14 @@ class App extends React.Component {
           fishes={this.state.fishes}
           order={this.state.order}
           params={this.props.match.params}
+          removeFromOrder={this.removeFromOrder}
         />
         <Inventory 
           addFish={this.addFish} 
           loadSampleFishes={this.loadSampleFishes}
           fishes={this.state.fishes}
           updateFishInventory={this.updateFishInventory}
+          removeFish={this.removeFish}
         />
       </div>
     )
