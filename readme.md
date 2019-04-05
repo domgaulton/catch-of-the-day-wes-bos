@@ -193,3 +193,29 @@ import 'firebase/database';
 * CRUD - Create Read Update Delete (first 3 are done already)
 * Delete - removeFish method and pass it to inventory via props (note firebase method of setting fish to null in app.js)
 * Can use `delete` for order state as it isn't using firebase. NB - What is delete??!
+
+### Lesson 22
+* `npm run watch` which runs concurrently package (devDependency) to run server and watch .styl changes 
+* react-transition-group: TransitionGroup - https://reactcommunity.org/react-transition-group/transition-group This is the wrapper so must have component
+* react-transition-group: CSSTransition - https://reactcommunity.org/react-transition-group/css-transition This is the individual element(s) being transitioned - Adds the following to classNames in CSS Transition classNames ('order' in example below) `-enter` and `-enter-active` when animating then `-enter-done` when finished or adds `-exit` and `exit-active` when leaving to relative elements
+```jsx
+<TransitionGroup 
+  className='order'
+  component='ul'
+>
+  {
+    orderIds.map({
+      <CSSTransition 
+        classNames='order'
+        key={key}
+        timeout={{ enter: 1500, exit: 1500 }}
+      >
+        <li key={key}>
+          {list.items}
+        </li>
+      </CSSTransition>
+    })
+  }
+</TransitionGroup>
+```
+* Must add key to each item, it doesn't show and hide it duplicates and makes a new element to add/replace before or after then removes or adds.
