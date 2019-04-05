@@ -1,5 +1,6 @@
 // import react from react node modules
 import React from 'react';
+import PropTypes from "prop-types";
 import { getFunName } from '../helpers';
 
 class StorePicker extends React.Component {
@@ -31,6 +32,10 @@ class StorePicker extends React.Component {
       </form>
     )
 	}
+}
+
+StorePicker.propTypes = {
+  history: PropTypes.object.isRequired
 }
 
 export default StorePicker;

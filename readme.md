@@ -219,3 +219,13 @@ import 'firebase/database';
 </TransitionGroup>
 ```
 * Must add key to each item, it doesn't show and hide it duplicates and makes a new element to add/replace before or after then removes or adds.
+
+### Lesson 23
+* Proptypes - for open source make sure others know what type (string, boolean, number, method) the props being passed should be - https://reactjs.org/docs/typechecking-with-proptypes.html List of prop types
+* Import PropTypes `import PropTypes from "prop-types";` then validate your proptypes with the following;
+```js
+ComponentName.propTypes = {
+  proptype: PropTypes.XXX.isRequired // .isRequired is optional
+};
+```
+* Appears propTypes are optional for props on page - can we validate component props to ensure each one has a relative propType?

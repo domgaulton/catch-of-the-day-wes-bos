@@ -1,5 +1,4 @@
 import React from 'react';
-// React Routing functions
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import App from './App';

@@ -1,5 +1,6 @@
 // import react from react node modules
 import React from 'react';
+import PropTypes from "prop-types";
 import Header from './Header';
 import Order from './Order';
 import Inventory from './Inventory';
@@ -95,7 +96,7 @@ class App extends React.Component {
 		return (
       <div className='catch-of-the-day'>
         <div className='menu'>
-          <Header tagline='Fresh Fish Daily!'/>
+          <Header tagline={this.props.match.params.storeId}/>
           <ul className='list-of-fishes'>
             {
               Object
@@ -127,5 +128,9 @@ class App extends React.Component {
     )
 	}
 }
+
+App.propTypes = {
+  match: PropTypes.object.isRequired
+};
 
 export default App;

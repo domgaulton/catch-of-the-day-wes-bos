@@ -1,5 +1,6 @@
 // import react from react node modules
 import React from 'react';
+import PropTypes from "prop-types";
 import { formatPrice } from '../helpers.js'
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
@@ -76,5 +77,11 @@ class Order extends React.Component {
     )
 	}
 }
+
+Order.propTypes = {
+  fishes: PropTypes.object.isRequired,
+  order: PropTypes.object.isRequired,
+  removeFromOrder: PropTypes.func.isRequired
+};
 
 export default Order;
