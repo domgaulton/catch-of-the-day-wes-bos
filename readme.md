@@ -292,3 +292,19 @@ render() {
 * `npm run build` removes all react bits we don't need and sets up files to put on server
 * css.map and js.map - sourcemap for file before its complied
 * Need a server to serve index.html but need browser to figure out routing rather than looking for /store folder etc
+
+### Lesson 26
+* Using Now - https://zeit.co/now (originally node js but 2019 any application you want)
+```zsh
+npm install -g now now-serve
+now run build
+cd build
+ns
+```
+* ns = now serve = deploy to the cloud
+* We want server to serve index.html and let app manage routing (rather than looking for /store/ folder and then a store file name)
+```zsh
+ns ---cmd 'list ./content -s'
+```
+* Now serve puts our html in a folder called content on their server THEN -s = single page. Put this in package.json as a deploy command `"deploy": "ns ./build ---cmd 'list ./content -s'"` (note changing to build folder as package.json is in the catch-of-the-day root directory)
+* Add OAuth domains to firebase Auth tab
