@@ -287,3 +287,8 @@ render() {
 * ComponentDidMount lifecycle hook to check if a user is already validated (and that user is the current user) and autolog in on page load
 * Logout button also uses firebase api
 * Use security-rules.json to update firebase rules
+
+### Lesson 25
+* `npm run build` removes all react bits we don't need and sets up files to put on server
+* css.map and js.map - sourcemap for file before its complied
+* Need a server to serve index.html but need browser to figure out routing rather than looking for /store folder etc
