@@ -308,3 +308,25 @@ ns ---cmd 'list ./content -s'
 ```
 * Now serve puts our html in a folder called content on their server THEN -s = single page. Put this in package.json as a deploy command `"deploy": "ns ./build ---cmd 'list ./content -s'"` (note changing to build folder as package.json is in the catch-of-the-day root directory)
 * Add OAuth domains to firebase Auth tab
+
+### Lesson 27
+* Using Github Pages - free hosting but need to define a homepage in package.json after privacy
+* `"Homepage": "https://{user}.github.io/{repository}"` e.g. `"Homepage": "https://domgaulton.github.io/catch-of-the-day-wes-bos"`
+* Update Router.js `<BrowserRouter basename="/catch-of-the-day-web-bos">` or pass it with variable 
+```js
+const repoURL = `${window.location.pathname.split('/')[1]}`
+<BrowserRouter basename={repoURL}>
+```
+* To deploy to github
+```zsh
+npm run build
+cd build
+git init
+git remote add origin git@github.com:{username}/{repository}.git
+git add .
+git commit -m 'Message'
+git push -u origin master
+```
+* Update settings in repo for github pages 
+* Add github.io to firebase
+* Bit of a hack - github doesn't support routing, so will serve you a 404 page when looking for /store so copy index.html to 404.html and your 404 page will still serve the index page!
