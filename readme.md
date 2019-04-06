@@ -1,5 +1,8 @@
 ## Tips
 
+## Login with email branch
+* https://firebase.google.com/docs/auth/web/password-auth
+
 ### To Do Later
 * Login with email
 * Host on heroku
