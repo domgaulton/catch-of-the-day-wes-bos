@@ -123,6 +123,8 @@ class App extends React.Component {
           fishes={this.state.fishes}
           updateFishInventory={this.updateFishInventory}
           removeFish={this.removeFish}
+          storeId={this.props.match.params.storeId}
+
         />
       </div>
     )

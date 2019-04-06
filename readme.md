@@ -229,3 +229,61 @@ ComponentName.propTypes = {
 };
 ```
 * Appears propTypes are optional for props on page - can we validate component props to ensure each one has a relative propType?
+
+### Lesson 24
+* Authentication Time!
+* In firebase go to Authentication and select login methods - in each platform create and app and give app settings to firebase
+* First thing inside render is check if there is a user assigned to the state value uid (user ID). If this is null (default value) then render the login form
+```
+render() {
+    // check if no one is logged in
+    if(!this.state.uid) {
+      return (
+        <div>
+          {this.renderLogin()}
+        </div>
+      )
+    }
+```
+* Also if they aren't the store owner don't allow them to manage inventory `if(this.state.uid !== this.state.owner)`
+* Next we need to set up the authentication so import `import firebase from 'firebase';` and `import base from '../base';` to Inventory.js  and see details below
+```js
+  // Function taking platform in and creating new firebase authentication e.g. firebase.authgithubAuthProvider()
+  authenticate = platform => {
+    // console.log(platform);
+    const authProvider = new firebase.auth[`${platform}AuthProvider`]();
+    firebaseApp
+      .auth()
+      .signInWithPopup(authProvider)
+      .then(this.authHandler);
+  }
+
+  authHandler = async authData => {
+    // 1 .Look up the current store in the firebase database (where fishes are stored)
+    console.log(authData)
+    // base.fetch fetches data from firebase api
+    const store = await base.fetch(this.props.storeId, { context: this });
+    // Does it have a store.owner or just store.fishes?
+    console.log(store);
+
+    // 2. Claim it if there is no owner
+    if (!store.owner) {
+      // save (post) it as our own on firebase database (You'll have list of fishes and a new col called owner with user id from authData)
+      await base.post(`${this.props.storeId}/owner`, {
+        data: authData.user.uid
+      });
+    }
+
+    // 3. Set the state of the inventory component to reflect the current user
+    this.setState({
+      uid: authData.user.uid,
+      // try both
+      owner: store.owner || authData.user.uid
+    });
+
+    // Once the uid and owner match the render function below should allow users to see inventory
+  };
+```
+* ComponentDidMount lifecycle hook to check if a user is already validated (and that user is the current user) and autolog in on page load
+* Logout button also uses firebase api
+* Use security-rules.json to update firebase rules

@@ -2,8 +2,28 @@
 import React from 'react';
 import PropTypes from "prop-types";
 import AddFishForm from './AddFishForm';
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import base, { firebaseApp } from '../base';
 
 class Inventory extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      uid: null,
+      owner: null
+    };
+  }
+
+  componentDidMount() {
+    // on page load see whether there is a user - if there is, log them in with authHandler function
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.authHandler({ user });
+      }
+    });
+  }
+
   handleChange = (e, key) => {
     // grab current item and call it fish using fishes[key]
     const fish = this.props.fishes[key];
@@ -18,6 +38,66 @@ class Inventory extends React.Component {
     };
     // Update the fish in with the method passed down from props seen in App.js
     this.props.updateFishInventory(key, updatedFish);
+  }
+
+  // Function taking platform in and creating new firebase authentication e.g. firebase.authgithubAuthProvider()
+  authenticate = platform => {
+    // console.log(platform);
+    const authProvider = new firebase.auth[`${platform}AuthProvider`]();
+    firebaseApp
+      .auth()
+      .signInWithPopup(authProvider)
+      .then(this.authHandler);
+  }
+
+  logout = async () => {
+    console.log("Logging out!");
+    await firebase.auth().signOut();
+    this.setState({ uid: null });
+  };
+
+  authHandler = async authData => {
+    // 1 .Look up the current store in the firebase database (where fishes are stored)
+    console.log(authData)
+    // base.fetch fetches data from firebase api
+    const store = await base.fetch(this.props.storeId, { context: this });
+    // Does it have a store.owner or just store.fishes?
+    console.log(store);
+
+    // 2. Claim it if there is no owner
+    if (!store.owner) {
+      // save (post) it as our own on firebase database (You'll have list of fishes and a new col called owner with user id from authData)
+      await base.post(`${this.props.storeId}/owner`, {
+        data: authData.user.uid
+      });
+    }
+
+    // 3. Set the state of the inventory component to reflect the current user
+    this.setState({
+      uid: authData.user.uid,
+      // try both
+      owner: store.owner || authData.user.uid
+    });
+
+    // Once the uid and owner match the render function below should allow users to see inventory
+  };
+
+  renderLogin = () => {
+    return (
+      <nav className="login">
+        <h2>Inventory Login</h2>
+        <p>Sign in to manage your store's inventory.</p>
+        <button className="github" onClick={() => this.authenticate("Github")}>
+          Log In With GitHub
+        </button>
+        <button className="twitter" onClick={() => this.authenticate("Twitter")}>
+          Log In With Twitter
+        </button>
+        <button className="facebook" onClick={() => this.authenticate("Facebook")}>
+          Log In With Facebook
+        </button>
+      </nav>
+    )
   }
 
   renderInventory = key => {
@@ -74,9 +154,30 @@ class Inventory extends React.Component {
   }
 
   render() {
+    // logout button
+    const logout = <button onClick={this.logout}>Logout!</button>
+    // check if no one is logged in
+    if(!this.state.uid) {
+      return (
+        <div>
+          {this.renderLogin()}
+        </div>
+      )
+    }
+    // Check if they are owner of store
+    if(this.state.uid !== this.state.owner) {
+      return (
+        <div>
+          <p>Sorry you aren't the owner of this store</p>
+          {logout}
+        </div>
+      )
+    }
+
     return (
       <div>
         <h2>Inventory</h2>
+        {logout}
         <AddFishForm addFish={this.props.addFish}/>
         {
           Object.keys(this.props.fishes)
@@ -93,7 +194,8 @@ Inventory.propTypes = {
   fishes: PropTypes.object.isRequired,
   updateFishInventory: PropTypes.func.isRequired,
   loadSampleFishes: PropTypes.func.isRequired,
-  removeFish: PropTypes.func.isRequired
+  removeFish: PropTypes.func.isRequired,
+  storeId: PropTypes.string.isRequired
 };
 
 export default Inventory;
