@@ -387,3 +387,7 @@ static propTypes = {
   match: PropTypes.object.isRequired
 };
 ```
+
+### Lesson 30
+* `npm run eject` - Eject from create-react-app which just gives us each individual file including dependencies (and installs them)
+* Checkout branch on this repository called `EJECTED` 
