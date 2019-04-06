@@ -334,3 +334,23 @@ git push -u origin master
 * Update settings in repo for github pages 
 * Add github.io to firebase
 * Bit of a hack - github doesn't support routing, so will serve you a 404 page when looking for /store so copy index.html to 404.html and your 404 page will still serve the index page!
+
+### Lesson 28
+* Deploying to your own server. If you're using subfolder remember to manage Router.js and package.json settings as per github settings above.
+* `npm run build` and using FTP client put the build folder on server
+* Add URL to firebase domains
+* Manage server routing to use React Router - if using apache set up a `.htaccess` file as per below
+```
+ReWriteBase /
+ReWriteRule ^index\.html$ - [L]
+ReWriteCond %{REQUEST_FILENAME} !-f
+ReWriteCond %{REQUEST_FILENAME} !-d
+ReWriteRule . /index.html - [L]
+```
+* Creates a rule that whenever you have any forward slash require filename but if nothing if found use index.html
+* If you have nginx Google 'nginx single page app' and create `nginx.conf` file
+```
+location / {
+  try_files $uri /index.html
+}
+```
