@@ -50,6 +50,44 @@ class Inventory extends React.Component {
       .then(this.authHandler);
   }
 
+  emailRegister = e => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.pass.value
+    // console.log(e.target.email.value);
+    // console.log(e.target.pass.value);
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(email, password)
+      .catch(function(error) {
+        if (error) {
+          console.log(error)
+        }
+        // // Handle Errors here.
+        // const errorCode = error.code;
+        const errorMessage = error.message;
+        alert(errorMessage);
+      });
+  }
+
+  emailLogin = e => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.pass.value
+    // console.log(e.target.email.value);
+    // console.log(e.target.pass.value);
+    firebaseApp
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .catch(function(error) {
+        // // Handle Errors here.
+        // const errorCode = error.code;
+        const errorMessage = error.message;
+        alert(errorMessage);
+      })
+      // .then(this.authHandler);
+  }
+
   logout = async () => {
     console.log("Logging out!");
     await firebase.auth().signOut();
@@ -86,16 +124,19 @@ class Inventory extends React.Component {
     return (
       <nav className="login">
         <h2>Inventory Login</h2>
-        <p>Sign in to manage your store's inventory.</p>
-        <button className="github" onClick={() => this.authenticate("Github")}>
-          Log In With GitHub
-        </button>
-        <button className="twitter" onClick={() => this.authenticate("Twitter")}>
-          Log In With Twitter
-        </button>
-        <button className="facebook" onClick={() => this.authenticate("Facebook")}>
-          Log In With Facebook
-        </button>
+        <p>Register</p>
+        <form onSubmit={(e) => this.emailRegister(e)}>
+          <input type="email" name="email" placeholder="email" />
+          <input type="password" name="pass" placeholder="password" />
+          <button type="submit">Register</button>
+        </form>
+
+        <p>Login</p>
+        <form onSubmit={(e) => this.emailLogin(e)}>
+          <input type="email" name="email" placeholder="email" />
+          <input type="password" name="pass" placeholder="password" />
+          <button type="submit">Log In</button>
+        </form>
       </nav>
     )
   }
