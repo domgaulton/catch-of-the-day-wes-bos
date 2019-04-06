@@ -12,11 +12,20 @@ import base from '../base';
 class App extends React.Component {
   constructor() {
     super();
-    this.state = {
-      fishes: {},
-      order: {},
-    };
+    // this.state = {
+    //   fishes: {},
+    //   order: {},
+    // };
   }
+
+  state = {
+    fishes: {},
+    order: {},
+  };
+
+  static propTypes = {
+    match: PropTypes.object.isRequired
+  };
 
   componentWillMount() {
     // Runs before <App /> is rendered
@@ -130,9 +139,5 @@ class App extends React.Component {
     )
 	}
 }
-
-App.propTypes = {
-  match: PropTypes.object.isRequired
-};
 
 export default App;

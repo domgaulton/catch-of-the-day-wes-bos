@@ -354,3 +354,36 @@ location / {
   try_files $uri /index.html
 }
 ```
+
+### Lesson 29
+* Arrow functions (already done throughout) to remove need to bound functions to parents `this.loadSamples = this.loadSamples.bind(this);` as an arrow function bounds to the parents but goes as follows;
+```
+loadSamples() {}
+loadSamples = function() => {}
+loadSamples = () => {}
+```
+* Can also remove state from constructor and put it as object in component
+```js
+  constructor() {
+    super();
+    // this.state = {
+    //   fishes: {},
+    //   order: {},
+    // };
+  }
+
+  state = {
+    fishes: {},
+    order: {},
+  };
+```
+* Move proptypes into component so no longer use App.propTypes after component but instead use static (static means don't need to call it every time) inside e.g. after declaring state - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/static
+```js
+// App.propTypes = {
+//   match: PropTypes.object.isRequired
+// };
+
+static propTypes = {
+  match: PropTypes.object.isRequired
+};
+```
