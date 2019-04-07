@@ -2,6 +2,7 @@
 
 ## Login with email branch
 * https://firebase.google.com/docs/auth/web/password-auth
+* https://medium.com/codingurukul/firebase-for-web-authentication-auth-with-email-and-password-cc4f7b4efc1b
 
 ### To Do Later
 * Login with email

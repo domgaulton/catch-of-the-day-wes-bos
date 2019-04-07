@@ -10,13 +10,13 @@ import FishList from './FishList';
 import base from '../base';
 
 class App extends React.Component {
-  constructor() {
-    super();
-    // this.state = {
-    //   fishes: {},
-    //   order: {},
-    // };
-  }
+  // constructor() {
+  //   super();
+  //   // this.state = {
+  //   //   fishes: {},
+  //   //   order: {},
+  //   // };
+  // }
 
   state = {
     fishes: {},

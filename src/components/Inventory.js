@@ -17,11 +17,14 @@ class Inventory extends React.Component {
 
   componentDidMount() {
     // on page load see whether there is a user - if there is, log them in with authHandler function
-    firebase.auth().onAuthStateChanged(user => {
-      if (user) {
-        this.authHandler({ user });
-      }
-    });
+    console.log('firebase', firebase);
+    firebase.auth()
+      .onAuthStateChanged(user => {
+        if (user) {
+          console.log(user);
+          this.authHandler({ user });
+        }
+      });
   }
 
   handleChange = (e, key) => {
@@ -52,41 +55,52 @@ class Inventory extends React.Component {
 
   emailRegister = e => {
     e.preventDefault();
-    const email = e.target.email.value;
-    const password = e.target.pass.value
+    const email = e.target.registerEmail.value;
+    const password = e.target.registerPass.value;
     // console.log(e.target.email.value);
     // console.log(e.target.pass.value);
-    firebase
+    const userDetails = firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
       .catch(function(error) {
         if (error) {
           console.log(error)
+          const errorMessage = error.message;
+          alert(errorMessage);
         }
+        alert('Signed Up');
         // // Handle Errors here.
         // const errorCode = error.code;
-        const errorMessage = error.message;
-        alert(errorMessage);
+        
       });
+
+    console.log(userDetails);
+
+    // firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+    //   // Handle Errors here.
+    //   var errorCode = error.code;
+    //   var errorMessage = error.message;
+    //   // ...
+    // });
   }
 
-  emailLogin = e => {
-    e.preventDefault();
-    const email = e.target.email.value;
-    const password = e.target.pass.value
-    // console.log(e.target.email.value);
-    // console.log(e.target.pass.value);
-    firebaseApp
-      .auth()
-      .signInWithEmailAndPassword(email, password)
-      .catch(function(error) {
-        // // Handle Errors here.
-        // const errorCode = error.code;
-        const errorMessage = error.message;
-        alert(errorMessage);
-      })
-      // .then(this.authHandler);
-  }
+  // emailLogin = e => {
+  //   e.preventDefault();
+  //   const email = e.target.email.value;
+  //   const password = e.target.pass.value
+  //   // console.log(e.target.email.value);
+  //   // console.log(e.target.pass.value);
+  //   firebaseApp
+  //     .auth()
+  //     .signInWithEmailAndPassword(email, password)
+  //     .catch(function(error) {
+  //       // // Handle Errors here.
+  //       // const errorCode = error.code;
+  //       const errorMessage = error.message;
+  //       alert(errorMessage);
+  //     })
+  //     // .then(this.authHandler);
+  // }
 
   logout = async () => {
     console.log("Logging out!");
@@ -111,6 +125,7 @@ class Inventory extends React.Component {
     }
 
     // 3. Set the state of the inventory component to reflect the current user
+    console.log('Setting state: ', authData.user.uid, store.owner);
     this.setState({
       uid: authData.user.uid,
       // try both
@@ -126,8 +141,8 @@ class Inventory extends React.Component {
         <h2>Inventory Login</h2>
         <p>Register</p>
         <form onSubmit={(e) => this.emailRegister(e)}>
-          <input type="email" name="email" placeholder="email" />
-          <input type="password" name="pass" placeholder="password" />
+          <input type="email" name="registerEmail" placeholder="email" />
+          <input type="password" name="registerPass" placeholder="password" />
           <button type="submit">Register</button>
         </form>
 
