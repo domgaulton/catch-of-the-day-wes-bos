@@ -139,7 +139,7 @@ class Inventory extends React.Component {
     return (
       <nav className="login">
         <h2>Inventory Login</h2>
-        <p>Register</p>
+        <p>Register to manage inventory</p>
         <form onSubmit={(e) => this.emailRegister(e)}>
           <input type="email" name="registerEmail" placeholder="email" />
           <input type="password" name="registerPass" placeholder="password" />
